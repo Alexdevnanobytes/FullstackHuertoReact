@@ -18,33 +18,33 @@ export default function Catalogo() {
 
           <Product
           code="1"
-          image="/img/Pimientos.jpeg"
+          image="/img/pimenton-rojo.png"
           name="Pimentón rojo"
           description="Pimentón fresco y crujiente, ideal para ensaladas"
           price="1200" />
         <Product
           code="2"
-          image="/img/zanahoria.jpg"
-          name="Zanahoria"
-          description="Zanahorias dulces y tiernas, perfectas para cocinar o crudas"
+          image="/img/pimenton-amarillo.png"
+          name="Pimentón amarillo"
+          description="Pimentón fresco y crujiente, ideal para ensaladas"
           price="900" />
         <Product
           code="3"
-          image="/img/Pimientos.jpeg"
-          name="Tomate"
-          description="Tomates maduros, jugosos y llenos de sabor"
-          price="1500" />
+          image="/img/pimenton-verde.png"
+          name="Pimentón verde"
+          description="Pimentón fresco y crujiente, ideal para ensaladas"
+          price="500" />
         <Product
           code="4"
-          image="/img/Pimientos.jpeg"
-          name="Lechuga"
+          image="/img/lechuga-hidroponica.png"
+          name="Lechuga hidropónica"
           description="Lechuga fresca y crujiente para ensaladas saludables"
           price="800" />
         <Product
           code="5"
-          image="/img/Pimientos.jpeg"
-          name="Ají rojo"
-          description="Ají picante, ideal para sazonar tus comidas"
+          image="/img/betarraga.png"
+          name="Betarraga"
+          description="Betarraga fresca y dulce, perfecta para ensaladas"
           price="700" />
         <Product
           code="6"
