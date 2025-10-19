@@ -7,6 +7,47 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* ===================== REGISTRO INPUTS - FORZAR ESTILO CLARO ===================== */
+input, select, textarea {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  -webkit-text-fill-color: #000 !important; /* Safari */
+}
+
+/* Estados visuales */
+input:focus, textarea:focus {
+  border-color: #2E8B57;
+  box-shadow: 0 0 5px rgba(46, 139, 87, 0.4);
+}
+
+/* Campo con error */
+input.error {
+  border-color: #e74c3c;
+  background-color: #ffe6e6;
+  color: #000;
+}
+
+/* Botones */
+button {
+  background-color: #2E8B57;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button:hover {
+  background-color: #FFD700;
+  color: #333;
+}
 
 /* ===================== ESTILOS GENERALES ===================== */
 body {
