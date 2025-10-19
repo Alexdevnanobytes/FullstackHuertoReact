@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import "../../../src/App.css";
 import First from '../organisms/First';
+import Footer from '../organisms/Footer';
 
 export default function Registro() {
   const [nombre, setNombre] = useState('');
@@ -73,6 +74,7 @@ export default function Registro() {
       </form>
       {errorMessage && <div id="errores">{errorMessage}</div>}
       </section>
+      <Footer/>
     </>
   )
 }

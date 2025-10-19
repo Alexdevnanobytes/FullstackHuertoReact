@@ -1,6 +1,7 @@
 import React from "react";
 import First from '../organisms/First'
 import "../../App.css";
+import Footer from '../organisms/Footer';
 
 export default function Nosotros(){
     return (
@@ -31,6 +32,7 @@ export default function Nosotros(){
                     />
                 </div>
             </section>
+            <Footer/>
         </>
     )
 }

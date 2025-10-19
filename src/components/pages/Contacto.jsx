@@ -1,6 +1,7 @@
 import React from 'react';
 import First from '../organisms/First';
 import "../../App.css";
+import Footer from '../organisms/Footer';
 
 export default function Contacto() {
     return ( 
@@ -92,6 +93,7 @@ export default function Contacto() {
                     <p className="usuario">– Camila R.</p>
                 </div>
             </section>
+            <Footer/>
         </>
     );
 }

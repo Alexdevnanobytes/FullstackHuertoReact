@@ -1,25 +1,14 @@
 import React from "react";
 import First from '../organisms/First'
+import Footer from "../organisms/Footer";
+import Slider from "../../Slider";
 
 export default function Home(){
     return(
-        <>
+        <>  
             <First/>
-            <div id="welcome">
-                <h1>Bienvenido a Huerto Hogar</h1>
-                <div className="carousel">
-                    <button className="prev">⟨</button>
-                    <div className="slides">
-                        <img src="/public/img/plantacion1.jpg" alt="Rows of green crops growing in a sunlit field with a clear sky, evoking a peaceful and hopeful atmosphere"/>
-                        <img src="/public/img/plantacion2.jpg" alt="Close-up of hands planting seedlings in rich soil, surrounded by garden beds, conveying care and nurturing"/>
-                        <img src="/public/img/plantacion3.jpg" alt="Basket filled with freshly harvested vegetables resting on grass, suggesting abundance and freshness in a rural setting"/>
-                        <img src="/public/img/plantacion4.jpg" alt="Farmer tending to plants in a greenhouse, sunlight streaming through glass, expressing dedication and growth"/>
-                        <img src="/public/img/plantacion5.jpg" alt="Family smiling together while harvesting vegetables in a vibrant garden, radiating joy and togetherness"/>
-                    </div>
-                    <button className="next">⟩</button>
-                </div>
-            </div>
-        
+            <Slider/>
+
             <section className="intro">
                 <div className="intro-texto">
                     <p><strong>HuertoHogar</strong> es una tienda online dedicada a llevar la frescura y calidad de los productos del campo 
@@ -61,8 +50,7 @@ export default function Home(){
                     <img src="/public/img/frutasyverduras.jpeg" alt="Variety of colorful fruits and vegetables arranged on a rustic wooden table, creating a vibrant and inviting scene that suggests health and abundance"/>
                 </div>
             </section>
-            
-        <script src="script.js" defer></script>
+            <Footer/>
 
         </>
     )
