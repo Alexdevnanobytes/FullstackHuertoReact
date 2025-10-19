@@ -125,6 +125,9 @@ nav {
     list-style: none;
     display: flex;
     gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
 }
 .nav-container {
     display: flex;
@@ -132,7 +135,6 @@ nav {
     align-items: center;
     max-width: 100vw;
     width: 100%;
-    margin-top: 12px;
 }
 
 .logo {
@@ -517,7 +519,61 @@ ul {
     position: relative;
     overflow: hidden;
 }
+.product-qty input {
+  width: 60px;
+  margin-left: 0.5rem;
+  padding: 0.25rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+  color: #2E8B57;           /* color del número */
+  font-weight: bold;
+  -moz-appearance: textfield; /* para Firefox quitar spinners nativos */
+}
 
+.product-qty input::-webkit-outer-spin-button,
+.product-qty input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Si quieres agregar tus propios botones + / - */
+.product-qty button {
+  background: #2E8B57;
+  color: #fff;
+  border: none;
+  padding: 0 0.5rem;
+  margin: 0 0.25rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.product-qty button:hover {
+  background: #1f6f4c;
+}
+
+.product-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 1rem;
+}
+
+.product-qty input {
+  width: 60px;
+  margin-left: 0.5rem;
+  padding: 0.25rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.cartdiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
 .add-to-cart::before {
     content: '';
     position: absolute;
@@ -993,11 +1049,15 @@ iframe {
 }
 
 /* ===================== CATALOGO ===================== */
-
 #products {
     padding: 2rem 0;
     margin-left: 10vh;
     margin-right: 10vh;
+}
+#products h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #8B4513;
 }
 
 .product-list {
@@ -1049,4 +1109,181 @@ iframe {
     color: #8B4513;
     font-size: 1.1rem;
     margin: 10px 0;
+}
+.product-btn{
+    margin-top: auto;
+    background: #2E8B57;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    height: 3rem;
+}
+.product-btn:hover {
+    background: #1f6f4c;
+}
+/* Toast estilo pequeño, flotante */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #2e8b57;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: slideIn 0.3s ease, fadeOut 0.3s ease 1.7s forwards;
+  z-index: 1000;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; }
+}
+
+
+/* ===================== FILTER BAR (adaptado estética catálogo) ===================== */
+.filter-bar {
+  width: calc(100% - 20vh); /* respeta los márgenes laterales del #products */
+  margin-left: 10vh;
+  margin-right: 10vh;
+  display: flex;
+  justify-content: center;
+  padding: 0.6rem 0;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.filter-bar-inner {
+  display: inline-flex;
+  gap: 0.6rem;
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  align-items: center;
+}
+
+/* botón estilo "alargado" coherente con botones del catálogo */
+.filter-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #2E8B57;
+  transition: all 0.18s ease;
+  box-shadow: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+/* inactivo: fondo blanco, texto verde y sombra ligera */
+.filter-btn:not(.active) {
+  background: #ffffff;
+  color: #2E8B57;
+  opacity: 0.95;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* activo: fondo verde sólido y texto claro (coherente con nav) */
+.filter-btn.active {
+  background: linear-gradient(180deg, rgba(46,139,87,0.98), rgba(46,139,87,0.95));
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(46,139,87,0.18);
+}
+
+/* pequeño hover para todos los botones */
+.filter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+/* mobile: barra con scroll si hay muchas opciones, manteniendo estética */
+@media (max-width: 520px) {
+  .filter-bar {
+    width: calc(100% - 4rem); /* menos margen lateral en mobile */
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding: 0.5rem 0;
+  }
+
+  .filter-bar-inner {
+    gap: 0.5rem;
+    padding: 6px 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filter-btn {
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .filter-bar-inner::-webkit-scrollbar { height: 6px; }
+  .filter-bar-inner::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 4px; }
+}
+
+/* ===================== FILTRADO: animación ligera (mantener estética) ===================== */
+/* elementos por defecto (animación de entrada suave) */
+/* Reemplaza la regla que ponía opacity:0 por defecto */
+.product-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+  gap: 1.5rem !important;
+  align-items: start; /* importante para que las cards no estiren */
+  width: auto;
+  box-sizing: border-box;
+  margin-top: 0.6rem;
+}
+.product-list .product {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* clase opcional para animar la entrada (si luego la agregas desde JS) */
+.product-list .product--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* retrasos escalonados (ajustados a la rejilla) */
+.product-list .product:nth-child(1)  { transition-delay: 0ms; }
+.product-list .product:nth-child(2)  { transition-delay: 40ms; }
+.product-list .product:nth-child(3)  { transition-delay: 80ms; }
+.product-list .product:nth-child(4)  { transition-delay: 120ms; }
+.product-list .product:nth-child(5)  { transition-delay: 160ms; }
+.product-list .product:nth-child(6)  { transition-delay: 200ms; }
+.product-list .product:nth-child(7)  { transition-delay: 240ms; }
+.product-list .product:nth-child(8)  { transition-delay: 280ms; }
+.product-list .product:nth-child(9)  { transition-delay: 320ms; }
+.product-list .product:nth-child(10) { transition-delay: 360ms; }
+
+/* accesibilidad: focus visible para navegación por teclado */
+.filter-btn:focus {
+  outline: 3px solid rgba(46,139,87,0.18);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+/* ajuste responsivo general: mantener márgenes del #products en pantallas pequeñas */
+@media (max-width: 1068px) {
+  .filter-bar {
+    width: calc(100% - 4rem);
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
 }

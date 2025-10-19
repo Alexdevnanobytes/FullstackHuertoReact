@@ -4,6 +4,7 @@ import Home from './components/pages/Home'
 import Nosotros from './components/pages/Nosotros'
 import Catalogo from './components/pages/Catalogo'
 import Registro from './components/pages/Registro'
+import Cart from './components/pages/Cart'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Contacto from './components/pages/Contacto'
@@ -18,7 +19,8 @@ function App() {
         <Route path='/nosotros' element={<Nosotros />} />
         <Route path='/contacto' element={<Contacto />} />
         <Route path='/catalogo' element={<Catalogo />} />
-        <Route path='/registro' element={<Registro />} />   
+        <Route path='/registro' element={<Registro />} />  
+        <Route path='/cart' element={<Cart />} /> 
       </Routes>
     </BrowserRouter>
   )

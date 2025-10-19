@@ -49,7 +49,6 @@ export default function First() {
             <img src="/img/Logo.png" alt="MiEmpresa" />
           </Link>
 
-          {/* Nav links como lista para coincidir con tu CSS (li, nth-child, etc.) */}
           <ul
             id="nav-links"
             className={`nav-links ${menuOpen ? "active" : ""}`}
@@ -59,7 +58,7 @@ export default function First() {
             <li><NavLink to="/catalogo" className={linkClass} onClick={() => closeMenu()}>Catálogo</NavLink></li>
             <li><NavLink to="/nosotros" className={linkClass} onClick={() => closeMenu()}>Nosotros</NavLink></li>
             <li><NavLink to="/contacto" className={linkClass} onClick={() => closeMenu()}>Contacto</NavLink></li>
-            <li><NavLink to="/carrito" className={linkClass} onClick={() => closeMenu()}>Carrito</NavLink></li>
+            <li><NavLink to="/cart" className={linkClass} onClick={() => closeMenu()}>Carrito</NavLink></li>
             <li><NavLink to="/registro" id="btnregister" className={linkClass} onClick={() => closeMenu()}>Registro</NavLink></li>
           </ul>
 

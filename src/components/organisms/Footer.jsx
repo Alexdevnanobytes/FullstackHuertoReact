@@ -5,10 +5,10 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-left">
-        <h4>Tu Empresa</h4>
-        <p>Dirección: [Tu dirección aquí]</p>
-        <p>Teléfono: [Tu número]</p>
-        <p>Email: [Tu correo]</p>
+        <h4>Huerto Hogar</h4>
+        <p>Dirección: Av Siempre viva 123</p>
+        <p>Teléfono: 123-456-7890</p>
+        <p>Email: contacto@huertohogar.com</p>
         <p>© {new Date().getFullYear()} Todos los derechos reservados.</p>
       </div>
 
