@@ -1,5 +1,7 @@
 // src/__tests__/Carrito.test.jsx
+/* eslint-env jest */
 import React from "react";
+import { describe, it, expect, beforeEach, jest } from "@jest/globals";
 import { render, screen, fireEvent, within } from "@testing-library/react";
 import Cart from "../components/pages/Cart";
 
@@ -31,13 +33,13 @@ describe("Cart Component", () => {
     localStorage.clear();
   });
 
-  test("Renderiza carrito vacío si no hay productos", () => {
+  it("Renderiza carrito vacío si no hay productos", () => {
     render(<Cart />);
     expect(screen.getByText(/Tu carrito está vacío/i)).toBeInTheDocument();
     expect(screen.getByText(/Ir al catálogo/i)).toBeInTheDocument();
   });
 
-  test("Renderiza productos desde localStorage y calcula total correctamente", () => {
+  it("Renderiza productos desde localStorage y calcula total correctamente", () => {
     localStorage.setItem("products", JSON.stringify(mockProducts));
     render(<Cart />);
 
@@ -73,7 +75,7 @@ describe("Cart Component", () => {
     expect(totalSpan).toHaveTextContent("$ 3400");
   });
 
-  test("Eliminar un producto actualiza carrito y total", () => {
+  it("Eliminar un producto actualiza carrito y total", () => {
     localStorage.setItem("products", JSON.stringify(mockProducts));
     render(<Cart />);
 
@@ -95,7 +97,7 @@ describe("Cart Component", () => {
     expect(totalSpan).toHaveTextContent("$ 1000");
   });
 
-  test("Cambiar cantidad de un producto actualiza subtotal y total", () => {
+  it("Cambiar cantidad de un producto actualiza subtotal y total", () => {
     localStorage.setItem("products", JSON.stringify(mockProducts));
     render(<Cart />);
 
@@ -122,7 +124,7 @@ describe("Cart Component", () => {
     expect(totalSpan).toHaveTextContent("$ 5400");
   });
 
-  test("Limpiar carrito elimina todos los productos y limpia localStorage", () => {
+  it("Limpiar carrito elimina todos los productos y limpia localStorage", () => {
     localStorage.setItem("products", JSON.stringify(mockProducts));
     render(<Cart />);
 

@@ -1,5 +1,6 @@
 // src/__tests__/Catalogo.test.jsx
 import React from 'react';
+import { describe, it, expect, beforeEach } from '@jest/globals';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Catalogo from '../components/pages/Catalogo';
@@ -27,13 +28,13 @@ describe('Catalogo', () => {
     );
   });
 
-  test('muestra todos los productos inicialmente', () => {
+  it('muestra todos los productos inicialmente', () => {
     mockProducts.forEach(product => {
       expect(screen.getByText(product.name)).toBeInTheDocument();
     });
   });
 
-  test('filtra productos correctamente al seleccionar categoría', () => {
+  it('filtra productos correctamente al seleccionar categoría', () => {
     // Suponiendo que tus botones de filtro tienen data-cat con las categorías
     const verdurasBtn = screen.getByRole('tab', { name: /Verduras/i });
     fireEvent.click(verdurasBtn);

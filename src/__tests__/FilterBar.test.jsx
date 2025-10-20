@@ -1,9 +1,10 @@
 // src/__tests__/FilterBar.test.jsx
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { it, jest, expect } from '@jest/globals';
 import FilterBar from '../components/organisms/FilterBar';
 
-test('se renderizan los botones de filtro correctamente', () => {
+it('se renderizan los botones de filtro correctamente', () => {
   const onChangeMock = jest.fn();
 
   render(<FilterBar active="all" onChange={onChangeMock} />);
@@ -14,7 +15,7 @@ test('se renderizan los botones de filtro correctamente', () => {
   expect(screen.getByRole('tab', { name: /Orgánico/i })).toBeInTheDocument();
 });
 
-test('al hacer click en un tab se llama onChange con la categoría correcta', () => {
+it('al hacer click en un tab se llama onChange con la categoría correcta', () => {
   const onChangeMock = jest.fn();
 
   render(<FilterBar active="all" onChange={onChangeMock} />);
@@ -28,3 +29,4 @@ test('al hacer click en un tab se llama onChange con la categoría correcta', ()
   fireEvent.click(screen.getByRole('tab', { name: /Orgánico/i }));
   expect(onChangeMock).toHaveBeenCalledWith('po');
 });
+
