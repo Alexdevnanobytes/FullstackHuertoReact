@@ -19,12 +19,12 @@ export default function Home(){
                     </p>
                 </div>
                 <div className="intro-imagen">
-                    <img src="/public/img/campo.jpeg" alt="Expansive agricultural landscape with green fields and distant mountains under a bright sky, conveying tranquility and natural beauty"/>
+                    <img src="/public/img/lechuga-hidroponica.png" alt="Expansive agricultural landscape with green fields and distant mountains under a bright sky, conveying tranquility and natural beauty"/>
                 </div>
             </section>
 
             <section>
-                <div className="intro-texto">
+                <div className="intro-texto2">
                     <h2>Nuestra misión</h2>
                     <p><strong>Nuestra misión</strong> es proporcionar <strong>productos frescos y de calidad</strong> directamente desde el campo hasta 
                         la puerta de nuestros clientes, garantizando la frescura y el sabor en cada entrega. Nos 
@@ -33,12 +33,12 @@ export default function Home(){
                         todos los hogares chilenos. </p>
                 </div>
                 <div className="intro-imagen">
-                    <img src="/public/img/agricultora.jpeg" alt="Female farmer smiling while holding a basket of vegetables in a lush field, surrounded by crops and open sky, expressing pride and positivity"/>
+                    <img src="/public/img/plantacion2.jpg" alt="Female farmer smiling while holding a basket of vegetables in a lush field, surrounded by crops and open sky, expressing pride and positivity"/>
                 </div>
             </section>
 
             <section>
-                <div className="intro-texto">
+                <div className="intro-texto2">
                     <h2>Nuestra visión</h2>
                     <p>Nuestra visión es ser la tienda online líder en la distribución de productos frescos y naturales en 
                         Chile, reconocida por nuestra calidad excepcional, servicio al cliente y compromiso con la 
@@ -47,7 +47,7 @@ export default function Home(){
                         consumidor.</p>
                 </div>
                 <div className="intro-imagen">
-                    <img src="/public/img/frutasyverduras.jpeg" alt="Variety of colorful fruits and vegetables arranged on a rustic wooden table, creating a vibrant and inviting scene that suggests health and abundance"/>
+                    <img src="/public/img/plantacion5.jpg" alt="Variety of colorful fruits and vegetables arranged on a rustic wooden table, creating a vibrant and inviting scene that suggests health and abundance"/>
                 </div>
             </section>
             <Footer/>

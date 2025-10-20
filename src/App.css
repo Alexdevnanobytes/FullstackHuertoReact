@@ -400,14 +400,21 @@ ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
     flex-wrap: wrap;
+    gap: 2rem;
 }
 
 .intro-texto {
     flex: 1 1 50%;
     font-size: 1.1rem;
     line-height: 1.6;
+}
+.intro-texto2 p{
+    flex: 1 1 50%;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .intro-imagen {
@@ -420,7 +427,6 @@ ul {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 @media (max-width: 768px) {
