@@ -8,6 +8,8 @@ import Cart from './components/pages/Cart'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Contacto from './components/pages/Contacto'
+import AdminPanel from './components/pages/AdminPanel';
+
 
 
 function App() {
@@ -19,7 +21,8 @@ function App() {
         <Route path='/nosotros' element={<Nosotros />} />
         <Route path='/contacto' element={<Contacto />} />
         <Route path='/catalogo' element={<Catalogo />} />
-        <Route path='/registro' element={<Registro />} />  
+        <Route path='/registro' element={<Registro />} /> 
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path='/cart' element={<Cart />} /> 
       </Routes>
     </BrowserRouter>

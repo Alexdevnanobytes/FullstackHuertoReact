@@ -1,14 +1,16 @@
 // src/components/organisms/Product.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { addCarritoItem, getCurrentUser } from "../../api";
 
 export default function Product(props) {
-  const { code, image, name, description, price } = props;
+  const { code, image, name, description, price, productId } = props;
 
-  // cantidad seleccionada
   const [qty, setQty] = useState(1);
   const [inputValue, setInputValue] = useState("1");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  // manejar cambio en input
   const handleInputChange = (e) => {
     const val = e.target.value;
     if (val === "") {
@@ -22,7 +24,6 @@ export default function Product(props) {
     }
   };
 
-  // al perder foco, si está vacío, poner 1
   const handleInputBlur = () => {
     if (inputValue === "") {
       setQty(1);
@@ -30,39 +31,51 @@ export default function Product(props) {
     }
   };
 
-  // agregar al carrito
-  function addToCart() {
-    const raw = localStorage.getItem("products");
-    const cart = raw ? JSON.parse(raw) : [];
+  async function addToCart() {
+    const token = localStorage.getItem("token");
 
-    const idx = cart.findIndex((p) => p.code === code);
-    if (idx >= 0) {
-      // ya existe, sumar cantidad
-      cart[idx].qty = (cart[idx].qty || 1) + qty;
-    } else {
-      cart.push({
-        code,
-        image,
-        name,
-        description,
-        price,
-        qty,
-      });
+    if (!token) {
+      const ir = window.confirm(
+        "Debes iniciar sesión para agregar productos al carrito. ¿Quieres ir a la página de acceso?"
+      );
+      if (ir) {
+        navigate("/registro");
+      }
+      return;
     }
 
-    localStorage.setItem("products", JSON.stringify(cart));
+    try {
+      setLoading(true);
 
-    // mostrar toast
-    const toast = document.createElement("div");
-    toast.className = "toast";
-    toast.innerText = `Agregaste ${qty} ${name} al carrito`;
-    document.body.appendChild(toast);
-    setTimeout(() => {
-      toast.remove();
-    }, 2500);
+      // obtener usuario actual (id)
+      const user = await getCurrentUser();
+      if (!user || !user.id) {
+        throw new Error("No se pudo identificar el usuario actual.");
+      }
+
+      if (!productId) {
+        throw new Error("El producto no tiene ID (productId) válido.");
+      }
+
+      // llamada a backend para agregar al carrito
+      await addCarritoItem(user.id, productId, qty);
+
+      // toast visual
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.innerText = `Agregaste ${qty} ${name} al carrito`;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.remove();
+      }, 2500);
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Error al agregar al carrito.");
+    } finally {
+      setLoading(false);
+    }
   }
 
-  // botones de incrementar/decrementar
   const increment = () => {
     const newQty = qty + 1;
     setQty(newQty);
@@ -104,8 +117,12 @@ export default function Product(props) {
         </div>
       </div>
 
-      <button className="product-btn" onClick={addToCart}>
-        Añadir al carro
+      <button
+        className="product-btn"
+        onClick={addToCart}
+        disabled={loading}
+      >
+        {loading ? "Agregando..." : "Añadir al carro"}
       </button>
     </article>
   );

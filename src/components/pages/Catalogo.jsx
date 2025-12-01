@@ -1,33 +1,54 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Product from "../organisms/Product";
 import First from "../organisms/First";
 import Footer from "../organisms/Footer";
 import FilterBar from "../organisms/FilterBar";
+import { fetchProductos } from "../../api";
 
 export default function Catalogo() {
-  // datos (tomados de tu listado)
-  const PRODUCTS = [
-    { code: "VR01", image: "/img/pimenton-rojo.png", name: "Pimentón rojo", description: "Pimentón fresco y crujiente, ideal para ensaladas", price: "1200" },
-    { code: "VR02", image: "/img/pimenton-amarillo.png", name: "Pimentón amarillo", description: "Pimentón fresco y crujiente, ideal para ensaladas", price: "1000" },
-    { code: "VR03", image: "/img/pimenton-verde.png", name: "Pimentón verde", description: "Pimentón fresco y crujiente, ideal para ensaladas", price: "500" },
-    { code: "VR04", image: "/img/lechuga-hidroponica.png", name: "Lechuga hidropónica", description: "Lechuga fresca y crujiente para ensaladas saludables", price: "300" },
-    { code: "VR05", image: "/img/betarraga.png", name: "Betarraga 3un", description: "Betarraga fresca y dulce, perfecta para ensaladas", price: "700" },
-    { code: "PO01", image: "/img/miel.png", name: "Miel 1KG", description: "Miel fresca y dulce, perfecta para endulzar tus platos", price: "5000" },
-    { code: "FR01", image: "/img/platano.png", name: "Plátano KG", description: "Plátanos frescos y dulces, perfectos para batidos", price: "1250" },
-    { code: "PO02", image: "/img/quinoa.png", name: "Quinoa KG", description: "Quinoa fresca y nutritiva, perfecta para ensaladas", price: "6500" },
-    { code: "FR02", image: "/img/naranja.png", name: "Naranja KG", description: "Naranjas frescas y jugosas, perfectas para el desayuno", price: "850" },
-    { code: "PO03", image: "/img/leche.png", name: "Leche 1L", description: "Leche fresca y cremosa, perfecta para el desayuno", price: "1050" },
-    { code: "FR03", image: "/img/manzana.png", name: "Manzana KG", description: "Manzanas frescas y crujientes, perfectas para el desayuno", price: "850" },
-  ];
-
+  const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("all"); // all | vr | po | fr
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  // memoizamos el filtrado
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      setLoading(true);
+      setError("");
+      try {
+        const data = await fetchProductos();
+        if (!cancelled) {
+          setProducts(data || []);
+        }
+      } catch (err) {
+        console.error(err);
+        if (!cancelled) {
+          // si es 401/403, probablemente falta login
+          if (err.status === 401 || err.status === 403) {
+            setError("Debes iniciar sesión para ver el catálogo.");
+          } else {
+            setError("No se pudieron cargar los productos. Intenta nuevamente.");
+          }
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    load();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // filtrado según prefijo del código (VR / PO / FR)
   const filtered = useMemo(() => {
-    if (!filter || filter === "all") return PRODUCTS;
-    const codePrefix = filter.toUpperCase(); // "VR","PO","FR"
-    return PRODUCTS.filter((p) => p.code.startsWith(codePrefix));
-  }, [filter]);
+    if (!filter || filter === "all") return products;
+    const prefix = filter.toUpperCase(); // VR, PO, FR
+    return products.filter((p) => p.codigo && p.codigo.startsWith(prefix));
+  }, [filter, products]);
 
   return (
     <>
@@ -41,19 +62,33 @@ export default function Catalogo() {
         {/* Barra de filtros */}
         <FilterBar active={filter} onChange={(cat) => setFilter(cat)} />
 
-        {/* Lista filtrada */}
-        <div className="product-list">
-          {filtered.map((p) => (
-            <Product
-              key={p.code}
-              code={p.code}
-              image={p.image}
-              name={p.name}
-              description={p.description}
-              price={p.price}
-            />
-          ))}
-        </div>
+        {/* Estado de carga / error / lista */}
+        {loading ? (
+          <p style={{ padding: "2rem 0" }}>Cargando productos...</p>
+        ) : error ? (
+          <p style={{ padding: "2rem 0", color: "red" }}>{error}</p>
+        ) : (
+          <div className="product-list">
+            {filtered.map((p) => (
+              <Product
+                key={p.id || p.codigo}
+                productId={p.id}            // 👈 nuevo
+                code={p.codigo}
+                image={p.imagenUrl}
+                name={p.nombre}
+                description={p.descripcion}
+                price={p.precio}
+              />
+            ))}
+
+            {filtered.length === 0 && (
+              <p style={{ padding: "2rem 0" }}>
+                No hay productos para esta categoría.
+              </p>
+            )}
+          </div>
+
+        )}
       </div>
       <Footer />
     </>
